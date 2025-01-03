@@ -1,8 +1,8 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 
-namespace Müzik Ürünleri Alışveriş Sistemi
+namespace Müzik_Ürünleri_Alışveriş_Sistemi
 {
     public class Enstrüman
     {
@@ -31,20 +31,29 @@ namespace Müzik Ürünleri Alışveriş Sistemi
         {
             Enstrümanlar = new List<Enstrüman>
             {
-                new Enstrüman("Gitar", "Klasik Gitar", 1200),
-                new Enstrüman("Gitar", "Bass Gitar", 2000),
-                new Enstrüman("Gitar", "Elektronik Gitar", 3000),
+                new Enstrüman("Gitar", "Fender ESC-110 Educational Series Classical NAT", 10200),
+                new Enstrüman("Gitar", "IBANEZ GSR180-CM Bas Gitar", 10900),
+                new Enstrüman("Gitar", "Kozmos KST-57HSS-GMN-BK 57 HSS Akçaağaç Klavye Siyah Elektro Gitar", 6900),
+                new Enstrüman("Gitar", "Godin Concert Clasica II Elektro Klasik Gitar (Natural)", 52072),
+                new Enstrüman("Gitar", "Yamaha C40M Klasik Gitar (Mat Natural)", 6600),
 
-                new Enstrüman("Piyano", "Akustik Piyano", 15000),
-                new Enstrüman("Piyano", "Dijital Piyano", 7000),
+                new Enstrüman("Piyano", "Fenix FDP-1 Dijital Taşınabilir Piyano", 11319),
+                new Enstrüman("Piyano", "Casio CDP-S360 88 Tuşlu Dijital Piyano (Siyah)", 17500),
+                new Enstrüman("Piyano", "Fenix C-811 Taşınabilir Dijital Piyano Seti (Siyah)", 15695),
+                new Enstrüman("Piyano", "Donner SE-1 Dijital Piyano (Siyah)", 20500),
+                new Enstrüman("Piyano", "Peratron PA-61 61 Tuşlu Org (Adaptör ve Notalık Hediyeli)", 7118),
 
-                new Enstrüman("Keman", "Akustik Keman", 1000),
-                new Enstrüman("Keman", "Elektronik Keman", 2500),
+                new Enstrüman("Keman", "Stentor 1865/A The Messina 4/4 Keman", 4693),
+                new Enstrüman("Keman", "Stentor 'thelami' 1016/C Laminate 3/4 Keman", 4693),
+                new Enstrüman("Keman", "Eastar EVA-3 3/4 Keman Seti (Natural)", 4317),
+                new Enstrüman("Keman", "Yamaha V5SC 3/4 Keman (Natural)", 22999),
+                new Enstrüman("Keman", "Kinglos DSG 1310 DGS Series 4/4 Keman", 8722),
             };
         }
 
         public void EnstrümanTürleriListele(string enstrüman_tur)
-        {
+        {   //.Where(e => e.EnstrümanTur.Equals(enstrüman_tur, StringComparison.OrdinalIgnoreCase)) Plaklar listesinden, EnstrümanTur özelliği enstrüman_tur değişkenine eşit olanları filtreler (büyük/küçük harf farkı gözetmeden).
+            //.ToList() Filtrelenen sonuçları bir listeye dönüştür.
             var secilenEnstrümanlar = Enstrümanlar.Where(e => e.EnstrümanTur.Equals(enstrüman_tur, StringComparison.OrdinalIgnoreCase)).ToList();
 
             if (secilenEnstrümanlar.Count == 0)
@@ -245,43 +254,43 @@ namespace Müzik Ürünleri Alışveriş Sistemi
             // Varsayılan plaklar oluşturuluyor
             plaklar = new List<Plak>
             {
-                new Plak("Bohemian Rhapsody", "Queen", 150, "Rock"),
-                new Plak("Hotel California", "Eagles", 140, "Rock"),
-                new Plak("Back in Black", "AC/DC", 135, "Rock"),
-                new Plak("Stairway to Heaven", "Led Zeppelin", 160, "Rock"),
-                new Plak("Born to Run", "Bruce Springsteen", 145, "Rock"),
+                new Plak("Bohemian Rhapsody", "Queen", 450, "Rock"),
+                new Plak("Hotel California", "Eagles", 540, "Rock"),
+                new Plak("Back in Black", "AC/DC", 435, "Rock"),
+                new Plak("Stairway to Heaven", "Led Zeppelin", 460, "Rock"),
+                new Plak("Born to Run", "Bruce Springsteen", 445, "Rock"),
 
-                new Plak("Like a Virgin", "Madonna", 120, "Pop"),
-                new Plak("Thriller", "Michael Jackson", 150, "Pop"),
-                new Plak("1989", "Taylor Swift", 140, "Pop"),
-                new Plak("Future Nostalgia", "Dua Lipa", 130, "Pop"),
-                new Plak("Teenage Dream", "Katy Perry", 125, "Pop"),
+                new Plak("Like a Virgin", "Madonna", 520, "Pop"),
+                new Plak("Thriller", "Michael Jackson", 450, "Pop"),
+                new Plak("1989", "Taylor Swift", 340, "Pop"),
+                new Plak("Future Nostalgia", "Dua Lipa", 530, "Pop"),
+                new Plak("Teenage Dream", "Katy Perry", 425, "Pop"),
 
-                new Plak("The College Dropout", "Kanye West", 130, "Hiphop"),
-                new Plak("To Pimp a Butterfly", "Kendrick Lamar", 140, "Hiphop"),
-                new Plak("Illmatic", "Nas", 135, "Hiphop"),
-                new Plak("Enter the Wu-Tang", "Wu-Tang Clan", 150, "Hiphop"),
-                new Plak("The Chronic", "Dr. Dre", 145, "Hiphop"),
+                new Plak("The College Dropout", "Kanye West", 430, "Hiphop"),
+                new Plak("To Pimp a Butterfly", "Kendrick Lamar", 340, "Hiphop"),
+                new Plak("Illmatic", "Nas", 435, "Hiphop"),
+                new Plak("Enter the Wu-Tang", "Wu-Tang Clan", 350, "Hiphop"),
+                new Plak("The Chronic", "Dr. Dre", 445, "Hiphop"),
 
-                new Plak("Kind of Blue", "Miles Davis", 150, "Jazz"),
-                new Plak("Take Five", "Dave Brubeck", 140, "Jazz"),
-                new Plak("Blue Train", "John Coltrane", 135, "Jazz"),
-                new Plak("A Love Supreme", "John Coltrane", 160, "Jazz"),
-                new Plak("Bitches Brew", "Miles Davis", 145, "Jazz"),
+                new Plak("Kind of Blue", "Miles Davis", 450, "Jazz"),
+                new Plak("Take Five", "Dave Brubeck", 540, "Jazz"),
+                new Plak("Blue Train", "John Coltrane", 335, "Jazz"),
+                new Plak("A Love Supreme", "John Coltrane", 360, "Jazz"),
+                new Plak("Bitches Brew", "Miles Davis", 345, "Jazz"),
 
-                new Plak("The Thrill is Gone", "B.B. King", 150, "Blues"),
-                new Plak("Crossroad Blues", "Robert Johnson", 140, "Blues"),
+                new Plak("The Thrill is Gone", "B.B. King", 350, "Blues"),
+                new Plak("Crossroad Blues", "Robert Johnson", 440, "Blues"),
                 new Plak("Born Under a Bad Sign", "Albert King", 135, "Blues"),
-                new Plak("Mannish Boy", "Muddy Waters", 160, "Blues"),
-                new Plak("Pride and Joy", "Stevie Ray Vaughan", 145, "Blues")
+                new Plak("Mannish Boy", "Muddy Waters", 460, "Blues"),
+                new Plak("Pride and Joy", "Stevie Ray Vaughan", 545, "Blues")
             };
 
             // Varsayılan cihazlar oluşturuluyor
             cihazlar = new List<PlakCihazi>
             {
-                new PlakCihazi("Modern Plak Çalar", 300),
-                new PlakCihazi("Vintage Plak Çalar", 450),
-                new PlakCihazi("Bluetooth Plak Çalar", 500)
+                new PlakCihazi("KTOOLS PERA Pikap Hoparlörlü", 3538),
+                new PlakCihazi("KTOOLS LABEL Pikap Hoparlörlü", 450),
+                new PlakCihazi("Midex GR-50 Nostaljik Gramofon FM Radyolu 33/45 Devir Pikap Plak Çalar Bluetooth", 10439)
             };
         }
 
@@ -320,6 +329,7 @@ namespace Müzik Ürünleri Alışveriş Sistemi
         // Mevcut plak çalar cihazlarını listeler
         public void CihazlariListele()
         {
+            Console.WriteLine("");
             Console.WriteLine("--- Mevcut Plak Çalar Cihazları ---");
             for (int i = 0; i < cihazlar.Count; i++)
             {
@@ -373,6 +383,7 @@ namespace Müzik Ürünleri Alışveriş Sistemi
                 Console.WriteLine("2. Plak Cihazı Satın Al");
                 Console.WriteLine("3. Enstrüman Satın Al");
                 Console.WriteLine("4. Çıkış");
+                Console.WriteLine("");
                 Console.Write("Bir seçim yapınız: ");
 
                 string anaSecim = Console.ReadLine();
@@ -381,6 +392,7 @@ namespace Müzik Ürünleri Alışveriş Sistemi
                 {
                     while (true)
                     {
+                        Console.WriteLine("");
                         Console.WriteLine("--- Plak Türleri ---");
                         Console.WriteLine("1. Rock");
                         Console.WriteLine("2. Pop");
@@ -388,6 +400,7 @@ namespace Müzik Ürünleri Alışveriş Sistemi
                         Console.WriteLine("4. Jazz");
                         Console.WriteLine("5. Blues");
                         Console.WriteLine("6. Ana Menüye Dön");
+                        Console.WriteLine("");
                         Console.Write("Bir tür seçiniz: ");
 
                         string turSecim = Console.ReadLine();
@@ -409,7 +422,7 @@ namespace Müzik Ürünleri Alışveriş Sistemi
                         }
 
                         plakYonetimi.PlaklariListele(tur); // Seçilen türdeki plakları listele
-
+                        Console.WriteLine("");
                         Console.Write("Satın almak istediğiniz plağın numarasını girin: ");
                         if (int.TryParse(Console.ReadLine(), out int secim))
                         {
@@ -440,10 +453,11 @@ namespace Müzik Ürünleri Alışveriş Sistemi
                 else if (anaSecim == "2") // Plak Cihazı Satın Alma
                 {
                     plakYonetimi.CihazlariListele(); // Mevcut cihazları listele
-
+                    Console.WriteLine("");
                     Console.Write("Satın almak istediğiniz cihazın numarasını girin: ");
                     if (int.TryParse(Console.ReadLine(), out int cihazSecim))
                     {
+                        Console.WriteLine("");
                         var secilenCihaz = plakYonetimi.CihazSec(cihazSecim); // Kullanıcı seçimini al
                         if (secilenCihaz != null)
                         {
@@ -464,11 +478,13 @@ namespace Müzik Ürünleri Alışveriş Sistemi
                 {
                     while (true)
                     {
+                        Console.WriteLine("");
                         Console.WriteLine("--- Enstrüman Türleri ---");
                         Console.WriteLine("1. Gitar");
                         Console.WriteLine("2. Piyano");
                         Console.WriteLine("3. Keman");
                         Console.WriteLine("4. Ana Menüye Dön");
+                        Console.WriteLine("");
                         Console.Write("Bir tür seçiniz: ");
                         
                         string enstrumanSecim = Console.ReadLine();
@@ -490,6 +506,7 @@ namespace Müzik Ürünleri Alışveriş Sistemi
                         Console.Write("Satın almak istediğiniz enstrümanın numarasını girin: ");
                         if (int.TryParse(Console.ReadLine(), out int ens_seçim)) //out burada secim değişkeninin TryParse metodu tarafından verilen değeri almasını sağlar
                         {
+                            Console.WriteLine("");
                             var secilenEnstruman = enstrumanYonetimi.EnstrümanSec(ens_tür, ens_seçim);
                             if (secilenEnstruman != null)
                             {
@@ -517,6 +534,7 @@ namespace Müzik Ürünleri Alışveriş Sistemi
 
                 else if (anaSecim == "4") // Çıkış
                 {
+                    Console.WriteLine("");
                     Console.WriteLine($"Toplam tutarınız: {toplamTutar}TL İyi günler dileriz {isim} {soyisim}!");
                     break; // Programdan çıkış
                 }
