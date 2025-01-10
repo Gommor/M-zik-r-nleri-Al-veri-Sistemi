@@ -1,1 +1,4 @@
 https://drive.google.com/drive/folders/1VthHRl6K4Yc8_Xks-rtnLbLEV_v5kXHf?usp=drive_link
+
+Burdaki linkten tümünü indirdikten sonra .rar dosyasının içindeki Müzikler klasörünü .cs dosyasıyla aynı yerde bulunan projenin içine atın ve dosyaYolu olarak tanımlanan her plağın yanındaki C:\ ile başlayan file pathleri kendi
+bilgisayarınıdaki file path ile değiştirin. Müzikler bunu yaptıktan sonra çalacaktır.
