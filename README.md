@@ -1,5 +1,6 @@
 Overload Metod eklendi.
 Miras alma / kalıtım eklendi.
+Müzik çalma eklendi. (Muzikleri_İndirme_Linki dosyasındaki işlemleri yapın yoksa müzikler çalmaz.)
 
 
 
