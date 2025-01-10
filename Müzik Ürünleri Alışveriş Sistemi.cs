@@ -51,7 +51,7 @@ namespace Müzik_Ürünleri_Alışveriş_Sistemi
             };
         }
 
-        public void EnstrümanTürleriListele(string enstrüman_tur)
+        public void Listele(string enstrüman_tur) //Overload metod!
         {   //.Where(e => e.EnstrümanTur.Equals(enstrüman_tur, StringComparison.OrdinalIgnoreCase)) Plaklar listesinden, EnstrümanTur özelliği enstrüman_tur değişkenine eşit olanları filtreler (büyük/küçük harf farkı gözetmeden).
             //.ToList() Filtrelenen sonuçları bir listeye dönüştür.
             var secilenEnstrümanlar = Enstrümanlar.Where(e => e.EnstrümanTur.Equals(enstrüman_tur, StringComparison.OrdinalIgnoreCase)).ToList();
@@ -78,7 +78,7 @@ namespace Müzik_Ürünleri_Alışveriş_Sistemi
             }
             return null;
         }
-    
+
     }
 
 
@@ -294,13 +294,13 @@ namespace Müzik_Ürünleri_Alışveriş_Sistemi
             };
         }
 
-        // Belirli bir türdeki plakları listeler
-        public void PlaklariListele(string tür)// Kullanıcıdan plak tur bilgisi alınır. 12345... ile
+        // Overload metod!
+        public void Listele(string plak_tür)// Kullanıcıdan plak tur bilgisi alınır. 1 2 3 4 5... ile
         {
             //.Where(p => p.Tur.Equals(tur, StringComparison.OrdinalIgnoreCase)) Plaklar listesinden, Tur özelliği tur değişkenine eşit olanları filtreler (büyük/küçük harf farkı gözetmeden).
             //.ToList() Filtrelenen sonuçları bir listeye dönüştür.
             //Bu Rock, Pop, Hiphop vb. tarzında farklı türleri içeren listeden kullanıcıdan alınmış olan tür bilgisie göre seçer.
-            var secilenPlaklar = plaklar.Where(p => p.PlakTur.Equals(tür, StringComparison.OrdinalIgnoreCase)).ToList();
+            var secilenPlaklar = plaklar.Where(p => p.PlakTur.Equals(plak_tür, StringComparison.OrdinalIgnoreCase)).ToList();
 
             if (secilenPlaklar.Count == 0)
             {
@@ -308,7 +308,7 @@ namespace Müzik_Ürünleri_Alışveriş_Sistemi
                 return;
             }
 
-            Console.WriteLine($"--- {tür} Türündeki Plaklar ---");
+            Console.WriteLine($"--- {plak_tür} Türündeki Plaklar ---");
             for (int i = 0; i < secilenPlaklar.Count; i++)
             {
                 Console.WriteLine($"{i + 1}. {secilenPlaklar[i]}"); // 1. Plak bilgisi 
@@ -326,8 +326,8 @@ namespace Müzik_Ürünleri_Alışveriş_Sistemi
             return null;
         }
 
-        // Mevcut plak çalar cihazlarını listeler
-        public void CihazlariListele()
+        // Overload metod!
+        public void Listele()
         {
             Console.WriteLine("");
             Console.WriteLine("--- Mevcut Plak Çalar Cihazları ---");
@@ -407,26 +407,26 @@ namespace Müzik_Ürünleri_Alışveriş_Sistemi
 
                         if (turSecim == "6") break; // Ana menüye dön
 
-                        string tur = "";
-                        if (turSecim == "1") tur = "Rock";
-                        else if (turSecim == "2") tur = "Pop";
-                        else if (turSecim == "3") tur = "Hiphop";
-                        else if (turSecim == "4") tur = "Jazz";
-                        else if (turSecim == "5") tur = "Blues";
+                        string plak_tur = "";
+                        if (turSecim == "1") plak_tur = "Rock";
+                        else if (turSecim == "2") plak_tur = "Pop";
+                        else if (turSecim == "3") plak_tur = "Hiphop";
+                        else if (turSecim == "4") plak_tur = "Jazz";
+                        else if (turSecim == "5") plak_tur = "Blues";
 
 
-                        if (tur == "")
+                        if (plak_tur == "")
                         {
                             Console.WriteLine("Geçersiz seçim. Lütfen tekrar deneyiniz.");
                             continue;
                         }
 
-                        plakYonetimi.PlaklariListele(tur); // Seçilen türdeki plakları listele
+                        plakYonetimi.Listele(plak_tur); // Seçilen türdeki plakları listele
                         Console.WriteLine("");
                         Console.Write("Satın almak istediğiniz plağın numarasını girin: ");
                         if (int.TryParse(Console.ReadLine(), out int secim))
                         {
-                            var secilenPlak = plakYonetimi.PlakSec(tur, secim); // Kullanıcı seçimini al
+                            var secilenPlak = plakYonetimi.PlakSec(plak_tur, secim); // Kullanıcı seçimini al
                             if (secilenPlak != null)
                             {
                                 toplamTutar += secilenPlak.PlakFiyat; // Fiyatı toplam tutara ekle
@@ -452,7 +452,7 @@ namespace Müzik_Ürünleri_Alışveriş_Sistemi
                 }
                 else if (anaSecim == "2") // Plak Cihazı Satın Alma
                 {
-                    plakYonetimi.CihazlariListele(); // Mevcut cihazları listele
+                    plakYonetimi.Listele(); // Mevcut cihazları listele
                     Console.WriteLine("");
                     Console.Write("Satın almak istediğiniz cihazın numarasını girin: ");
                     if (int.TryParse(Console.ReadLine(), out int cihazSecim))
@@ -486,7 +486,7 @@ namespace Müzik_Ürünleri_Alışveriş_Sistemi
                         Console.WriteLine("4. Ana Menüye Dön");
                         Console.WriteLine("");
                         Console.Write("Bir tür seçiniz: ");
-                        
+
                         string enstrumanSecim = Console.ReadLine();
                         if (enstrumanSecim == "4") break;
 
@@ -501,7 +501,7 @@ namespace Müzik_Ürünleri_Alışveriş_Sistemi
                             continue;
                         }
 
-                        enstrumanYonetimi.EnstrümanTürleriListele(ens_tür); // Türdeki enstrümanları listele
+                        enstrumanYonetimi.Listele(ens_tür); // Türdeki enstrümanları listele
 
                         Console.Write("Satın almak istediğiniz enstrümanın numarasını girin: ");
                         if (int.TryParse(Console.ReadLine(), out int ens_seçim)) //out burada secim değişkeninin TryParse metodu tarafından verilen değeri almasını sağlar
