@@ -1,6 +1,8 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using NAudio;
+using NAudio.Wave;
 
 namespace Müzik_Ürünleri_Alışveriş_Sistemi
 {
@@ -92,17 +94,49 @@ namespace Müzik_Ürünleri_Alışveriş_Sistemi
     public class Plak : Müzik //Miras alma, kalıtım
     {
         public string PlakTur;
+        public string DosyaYolu { get; set; }
+        
 
         // Yapıcı metod (constructor)
-        public Plak(string plak_ad, string plak_sanatci, double plak_fiyat, string plak_tur)
+        public Plak(string plak_ad, string plak_sanatci, double plak_fiyat, string plak_tur, string dosyaYolu)
         {
             Ad = plak_ad;
             Sanatci = plak_sanatci;
             Fiyat = plak_fiyat;
             PlakTur = plak_tur;
+            DosyaYolu = dosyaYolu;
         }
+        public void MuzikCal()
+        {
+            if (System.IO.File.Exists(DosyaYolu))  // Dosya yolunu kontrol et
+            {
+                try
+                {
+                    using (var audioFile = new AudioFileReader(DosyaYolu)) // Dosyayı oku
+                    using (var outputDevice = new WaveOutEvent()) // Ses cihazı
+                    {
+                        outputDevice.Init(audioFile); // Cihazı başlat
+                        outputDevice.Play(); // Müzik çalmaya başla
+                        Console.WriteLine("Müzik çalıyor...");
+                        Console.WriteLine("Müziği durdurmak için bir tuşa basın.");
+                        Console.ReadKey(); // Kullanıcı tuşa basana kadar müzik çalar
+                        outputDevice.Stop(); // Müzik durdur
+                        Console.WriteLine("Müzik durduruldu.");
+                    }
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine("Müzik çalarken bir hata oluştu: " + ex.Message);
+                }
+            }
+            else
+            {
+                Console.WriteLine("Hata: Belirtilen müzik dosyası bulunamadı.");
+            }
+        }
+
     }
-    
+
     // Plak çalar cihazları için sınıf
     class PlakCihazi : Müzik //Miras alma, kalıtım
     {
@@ -246,35 +280,35 @@ namespace Müzik_Ürünleri_Alışveriş_Sistemi
             // Varsayılan plaklar oluşturuluyor
             plaklar = new List<Plak>
             {
-                new Plak("Bohemian Rhapsody", "Queen", 450, "Rock"),
-                new Plak("Hotel California", "Eagles", 540, "Rock"),
-                new Plak("Back in Black", "AC/DC", 435, "Rock"),
-                new Plak("Stairway to Heaven", "Led Zeppelin", 460, "Rock"),
-                new Plak("Born to Run", "Bruce Springsteen", 445, "Rock"),
+                    new Plak("Bohemian Rhapsody", "Queen", 450, "Rock", @"C:\Users\b\source\repos\ProjeNTP\ProjeNTP\Müzikler\rock1.mp3"),// Kendi file path'inizle değiştirin.
+                    new Plak("Hotel California", "Eagles", 540, "Rock", @"C:\Users\b\source\repos\ProjeNTP\ProjeNTP\Müzikler\rock2.mp3"),
+                    new Plak("Back in Black", "AC/DC", 435, "Rock", @"C:\Users\b\source\repos\ProjeNTP\ProjeNTP\Müzikler\rock3.mp3"),
+                    new Plak("Stairway to Heaven", "Led Zeppelin", 460, "Rock", @"C:\Users\b\source\repos\ProjeNTP\ProjeNTP\Müzikler\rock4.mp3"),
+                    new Plak("Born to Run", "Bruce Springsteen", 445, "Rock", @"C:\Users\b\source\repos\ProjeNTP\ProjeNTP\Müzikler\rock5.mp3"),
 
-                new Plak("Like a Virgin", "Madonna", 520, "Pop"),
-                new Plak("Thriller", "Michael Jackson", 450, "Pop"),
-                new Plak("1989", "Taylor Swift", 340, "Pop"),
-                new Plak("Future Nostalgia", "Dua Lipa", 530, "Pop"),
-                new Plak("Teenage Dream", "Katy Perry", 425, "Pop"),
+                    new Plak("Like a Virgin", "Madonna", 520, "Pop", @"C:\Users\b\source\repos\ProjeNTP\ProjeNTP\Müzikler\pop1.mp3"),
+                    new Plak("Thriller", "Michael Jackson", 450, "Pop", @"C:\Users\b\source\repos\ProjeNTP\ProjeNTP\Müzikler\pop2.mp3"),
+                    new Plak("Look What You Made Me Do", "Taylor Swift", 340, "Pop", @"C:\Users\b\source\repos\ProjeNTP\ProjeNTP\Müzikler\pop3.mp3"),
+                    new Plak("Future Nostalgia", "Dua Lipa", 530, "Pop", @"C:\Users\b\source\repos\ProjeNTP\ProjeNTP\Müzikler\pop4.mp3"),
+                    new Plak("Teenage Dream", "Katy Perry", 425, "Pop", @"C:\Users\b\source\repos\ProjeNTP\ProjeNTP\Müzikler\pop5.mp3"),
 
-                new Plak("The College Dropout", "Kanye West", 430, "Hiphop"),
-                new Plak("To Pimp a Butterfly", "Kendrick Lamar", 340, "Hiphop"),
-                new Plak("Illmatic", "Nas", 435, "Hiphop"),
-                new Plak("Enter the Wu-Tang", "Wu-Tang Clan", 350, "Hiphop"),
-                new Plak("The Chronic", "Dr. Dre", 445, "Hiphop"),
+                    new Plak("Vultures", "Kanye West", 430, "Hiphop", @"C:\Users\b\source\repos\ProjeNTP\ProjeNTP\Müzikler\hiphop1.mp3"),
+                    new Plak("Beaverskin", "Plaqueboymax", 340, "Hiphop", @"C:\Users\b\source\repos\ProjeNTP\ProjeNTP\Müzikler\hiphop2.mp3"),
+                    new Plak("Sky", "Playboi Carti", 435, "Hiphop", @"C:\Users\b\source\repos\ProjeNTP\ProjeNTP\Müzikler\hiphop3.mp3"),
+                    new Plak("HIM ALL ALONG", "Gunna", 350, "Hiphop",@"C:\Users\b\source\repos\ProjeNTP\ProjeNTP\Müzikler\hiphop4.mp3"),
+                    new Plak("FLYTROOP", "Yeat", 445, "Hiphop", @"C:\Users\b\source\repos\ProjeNTP\ProjeNTP\Müzikler\hiphop5.mp3"),
 
-                new Plak("Kind of Blue", "Miles Davis", 450, "Jazz"),
-                new Plak("Take Five", "Dave Brubeck", 540, "Jazz"),
-                new Plak("Blue Train", "John Coltrane", 335, "Jazz"),
-                new Plak("A Love Supreme", "John Coltrane", 360, "Jazz"),
-                new Plak("Bitches Brew", "Miles Davis", 345, "Jazz"),
+                    new Plak("Blue In Green", "Miles Davis", 450, "Jazz", @"C:\Users\b\source\repos\ProjeNTP\ProjeNTP\Müzikler\jazz1.mp3"),
+                    new Plak("Take Five", "Dave Brubeck", 540, "Jazz", @"C:\Users\b\source\repos\ProjeNTP\ProjeNTP\Müzikler\jazz2.mp3"),
+                    new Plak("Blue Train", "John Coltrane", 335, "Jazz", @"C:\Users\b\source\repos\ProjeNTP\ProjeNTP\Müzikler\jazz3.mp3"),
+                    new Plak("A Love Supreme", "John Coltrane", 360, "Jazz", @"C:\Users\b\source\repos\ProjeNTP\ProjeNTP\Müzikler\jazz4.mp3"),
+                    new Plak("So What   ", "Miles Davis", 345, "Jazz", @"C:\Users\b\source\repos\ProjeNTP\ProjeNTP\Müzikler\jazz5.mp3"),
 
-                new Plak("The Thrill is Gone", "B.B. King", 350, "Blues"),
-                new Plak("Crossroad Blues", "Robert Johnson", 440, "Blues"),
-                new Plak("Born Under a Bad Sign", "Albert King", 135, "Blues"),
-                new Plak("Mannish Boy", "Muddy Waters", 460, "Blues"),
-                new Plak("Pride and Joy", "Stevie Ray Vaughan", 545, "Blues")
+                    new Plak("The Thrill is Gone", "B.B. King", 350, "Blues", @"C:\Users\b\source\repos\ProjeNTP\ProjeNTP\Müzikler\blues1.mp3"),
+                    new Plak("Crossroad Blues", "Robert Johnson", 440, "Blues",@"C:\Users\b\source\repos\ProjeNTP\ProjeNTP\Müzikler\blues2.mp3"),
+                    new Plak("Born Under a Bad Sign", "Albert King", 135, "Blues", @"C:\Users\b\source\repos\ProjeNTP\ProjeNTP\Müzikler\blues3.mp3"),
+                    new Plak("Mannish Boy", "Muddy Waters", 460, "Blues",@"C:\Users\b\source\repos\ProjeNTP\ProjeNTP\Müzikler\blues4.mp3"),
+                    new Plak("Pride and Joy", "Stevie Ray Vaughan", 545, "Blues", @"C:\Users\b\source\repos\ProjeNTP\ProjeNTP\Müzikler\blues5.mp3")
             };
 
             // Varsayılan cihazlar oluşturuluyor
@@ -344,8 +378,9 @@ namespace Müzik_Ürünleri_Alışveriş_Sistemi
     // Ana program akışı
     class Program
     {
-        static void Main(string[] args)
+            static void Main(string[] args)
         {
+            
             PlakYonetimi plakYonetimi = new PlakYonetimi(); // Plak yönetimi nesnesi oluşturuluyor
             EnstrümanYonetimi enstrumanYonetimi = new EnstrümanYonetimi();
             double toplamTutar = 0; // Toplam tutar başlangıç değeri
@@ -379,7 +414,6 @@ namespace Müzik_Ürünleri_Alışveriş_Sistemi
                 Console.Write("Bir seçim yapınız: ");
 
                 string anaSecim = Console.ReadLine();
-
                 if (anaSecim == "1") // Plak Satın Alma
                 {
                     while (true)
@@ -415,12 +449,13 @@ namespace Müzik_Ürünleri_Alışveriş_Sistemi
 
                         plakYonetimi.Listele(plak_tur); // Seçilen türdeki plakları listele
                         Console.WriteLine("");
-                        Console.Write("Satın almak istediğiniz plağın numarasını girin: ");
+                        Console.Write("Dinlemek ve satın almak istediğiniz plağın numarasını girin: ");
                         if (int.TryParse(Console.ReadLine(), out int secim))
                         {
                             var secilenPlak = plakYonetimi.PlakSec(plak_tur, secim); // Kullanıcı seçimini al
                             if (secilenPlak != null)
                             {
+                                secilenPlak.MuzikCal();
                                 toplamTutar += secilenPlak.Fiyat; // Fiyatı toplam tutara ekle
                                 Console.WriteLine($"{secilenPlak.Ad} sepete eklendi. Toplam tutar: {toplamTutar}TL");
                             }
