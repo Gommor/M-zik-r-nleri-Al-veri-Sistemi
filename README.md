@@ -1,3 +1,5 @@
+Overload Metod eklendi.
+
 Program, kullanıcının temel bilgilerini (ad, soyad, telefon numarası, e-posta) toplamakla başlar. Bu bilgiler, kullanıcıyı tanımak ve satış işlemini düzenlemek için gereklidir.
 
 Ana Menü
