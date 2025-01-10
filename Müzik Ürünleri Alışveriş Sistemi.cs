@@ -4,23 +4,29 @@ using System.Linq;
 
 namespace Müzik_Ürünleri_Alışveriş_Sistemi
 {
-    public class Enstrüman
+    public class Müzik
     {
-        public string EnstrümanAd;
-        public string EnstrümanTur;
-        public double EnstrümanFiyat;
+        public string Ad;
+        public double Fiyat;
+        public string Sanatci;
 
+        public override string ToString()
+        {
+            return $"{Ad}, {Sanatci} - Fiyat: {Fiyat} TL";
+        }
+    }
+
+    public class Enstrüman : Müzik // Miras alma, kalıtım
+    {
+        public string EnstrümanTur;
         // Yapıcı metod (constructor)
         public Enstrüman(string enstrüman_tur, string enstrüman_ad, double enstrüman_fiyat)
         {
             EnstrümanTur = enstrüman_tur;
-            EnstrümanAd = enstrüman_ad;
-            EnstrümanFiyat = enstrüman_fiyat;
+            Ad = enstrüman_ad;
+            Fiyat = enstrüman_fiyat;
         }
-        public override string ToString()
-        {
-            return $"{EnstrümanAd} - Fiyat: {EnstrümanFiyat} TL";
-        }
+        
     }
 
     class EnstrümanYonetimi
@@ -83,42 +89,28 @@ namespace Müzik_Ürünleri_Alışveriş_Sistemi
 
 
     // Plak sınıfı: Plakların temel özelliklerini içerir
-    public class Plak
+    public class Plak : Müzik //Miras alma, kalıtım
     {
-        public string PlakAd;
-        public string PlakSanatci;
-        public double PlakFiyat;
         public string PlakTur;
 
         // Yapıcı metod (constructor)
         public Plak(string plak_ad, string plak_sanatci, double plak_fiyat, string plak_tur)
         {
-            PlakAd = plak_ad;
-            PlakSanatci = plak_sanatci;
-            PlakFiyat = plak_fiyat;
+            Ad = plak_ad;
+            Sanatci = plak_sanatci;
+            Fiyat = plak_fiyat;
             PlakTur = plak_tur;
         }
-        public override string ToString()
-        {
-            return $"{PlakAd} - {PlakSanatci}, Fiyat: {PlakFiyat}TL";
-        }
     }
-
+    
     // Plak çalar cihazları için sınıf
-    class PlakCihazi
+    class PlakCihazi : Müzik //Miras alma, kalıtım
     {
-        public string PlakCihazAd { get; set; } // Cihaz adı
-        public double PlakCihazFiyat { get; set; } // Cihaz fiyatı
-
         // Yapıcı metod (constructor)
         public PlakCihazi(string plak_cihaz_ad, double plak_cihaz_fiyat)
         {
-            PlakCihazAd = plak_cihaz_ad;
-            PlakCihazFiyat = plak_cihaz_fiyat;
-        }
-        public override string ToString()
-        {
-            return $"{PlakCihazAd}, Fiyat: {PlakCihazFiyat}TL";
+            Ad = plak_cihaz_ad;
+            Fiyat = plak_cihaz_fiyat;
         }
     }
 
@@ -243,7 +235,7 @@ namespace Müzik_Ürünleri_Alışveriş_Sistemi
 
 
     // Plak ve cihaz yönetimini sağlayan sınıf
-    class PlakYonetimi
+    class PlakYonetimi 
     {
         private List<Plak> plaklar; // Plak listesini saklar
         private List<PlakCihazi> cihazlar; // Cihaz listesini saklar
@@ -429,8 +421,8 @@ namespace Müzik_Ürünleri_Alışveriş_Sistemi
                             var secilenPlak = plakYonetimi.PlakSec(plak_tur, secim); // Kullanıcı seçimini al
                             if (secilenPlak != null)
                             {
-                                toplamTutar += secilenPlak.PlakFiyat; // Fiyatı toplam tutara ekle
-                                Console.WriteLine($"{secilenPlak.PlakAd} sepete eklendi. Toplam tutar: {toplamTutar}TL");
+                                toplamTutar += secilenPlak.Fiyat; // Fiyatı toplam tutara ekle
+                                Console.WriteLine($"{secilenPlak.Ad} sepete eklendi. Toplam tutar: {toplamTutar}TL");
                             }
                             else
                             {
@@ -461,8 +453,8 @@ namespace Müzik_Ürünleri_Alışveriş_Sistemi
                         var secilenCihaz = plakYonetimi.CihazSec(cihazSecim); // Kullanıcı seçimini al
                         if (secilenCihaz != null)
                         {
-                            toplamTutar += secilenCihaz.PlakCihazFiyat; // Fiyatı toplam tutara ekle
-                            Console.WriteLine($"{secilenCihaz.PlakCihazAd} sepete eklendi. Toplam tutar: {toplamTutar}TL");
+                            toplamTutar += secilenCihaz.Fiyat; // Fiyatı toplam tutara ekle
+                            Console.WriteLine($"{secilenCihaz.Ad} sepete eklendi. Toplam tutar: {toplamTutar}TL");
                         }
                         else
                         {
@@ -510,8 +502,8 @@ namespace Müzik_Ürünleri_Alışveriş_Sistemi
                             var secilenEnstruman = enstrumanYonetimi.EnstrümanSec(ens_tür, ens_seçim);
                             if (secilenEnstruman != null)
                             {
-                                toplamTutar += secilenEnstruman.EnstrümanFiyat;
-                                Console.WriteLine($"{secilenEnstruman.EnstrümanAd} sepete eklendi. Toplam tutar: {toplamTutar}TL");
+                                toplamTutar += secilenEnstruman.Fiyat;
+                                Console.WriteLine($"{secilenEnstruman.Ad} sepete eklendi. Toplam tutar: {toplamTutar}TL");
                             }
                             else
                             {
